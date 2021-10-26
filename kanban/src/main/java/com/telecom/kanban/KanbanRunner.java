@@ -15,7 +15,7 @@ import com.telecom.kanban.repository.TaskRepo;
 @Component
 public class KanbanRunner implements CommandLineRunner {
 	
-	private static final Logger logger = LoggerFactory.getLogger(KanbanRunner.class);
+	public static final Logger logger = LoggerFactory.getLogger(KanbanRunner.class);
 	
 	@Autowired
 	private DeveloperRepo developerRepo;
@@ -30,8 +30,9 @@ public class KanbanRunner implements CommandLineRunner {
 		dev.setLastName("lek");
 		dev.setFirstName("med");
 		dev.setPassword("toto");
-		developerRepo.save(dev);		
-	}
+		developerRepo.save(dev);	
+		//logger.debug("telecom zzzz");	
+		}
 
 	
 	

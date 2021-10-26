@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -19,9 +20,11 @@ public class ChangeLog {
 	private Long id;
 	
 	private Date occuredAt;
-	
+	@ManyToOne
 	private Task task;
+	@ManyToOne
 	private TaskStatus sourceStatus;
+	@ManyToOne
 	private TaskStatus targetStatus;
 
 

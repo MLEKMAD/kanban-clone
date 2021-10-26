@@ -1,10 +1,12 @@
 package com.telecom.kanban.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -37,8 +41,10 @@ public class Developer {
 	@Email(message = "Email")
 	private String email;
 	
-	@ManyToMany
-	private List<Task> tasks;
+	@ManyToMany()
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private List<Task> tasks = new ArrayList<Task>();
 	
 	
 }

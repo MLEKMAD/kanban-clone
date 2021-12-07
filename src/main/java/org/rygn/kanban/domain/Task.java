@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,15 +29,20 @@ public class Task {
 
 	private @Id @GeneratedValue Long id;
 	
+	@NotBlank(message = "Title can not be empty")
 	private String title;
 	
+	@NotNull(message = "nbHoursForecast can not be null")
 	private Integer nbHoursForecast;
 	
+	@NotNull(message = "nbHoursReal can not be null")
 	private Integer nbHoursReal;
 	
+	@NotNull(message = "nbHoursForecast can not be null")
 	private LocalDate created;
 	
 	@ManyToOne
+	@NotBlank(message = "Type can not be empty")
 	private TaskType type;
 	
 	@ManyToOne
@@ -44,8 +51,8 @@ public class Task {
 	@ManyToMany(fetch=FetchType.EAGER)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
 	@JsonBackReference
+	@NotEmpty(message = "Developers can not be empty")
     private Set<Developer> developers;
 	
 	@OneToMany(mappedBy="task", cascade={CascadeType.ALL}, orphanRemoval=true)

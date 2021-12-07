@@ -2,6 +2,8 @@ package org.rygn.kanban.controller;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.rygn.kanban.domain.Task;
 import org.rygn.kanban.service.TaskService;
 import org.springframework.http.HttpStatus;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,7 +33,7 @@ class TaskController {
   }
   
   @PostMapping(value="/tasks", consumes = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<Task> createTask(@RequestBody Task newTask) {
+  ResponseEntity<Task> createTask( @Valid @RequestBody Task newTask) {
     return ResponseEntity.status(HttpStatus.CREATED).body(service.createTask(newTask));
   }
   
